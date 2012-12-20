@@ -1,0 +1,16 @@
++------------------------------------+
+| APPROXIMATION LARGEUR ARBORESCENTE |
++------------------------------------+
+
++--------------------------+
+| Master 2 MOCA            |
+| Université Montpellier 2 |
+| Décembre 2012            |
++--------------------------+
+
++------------------------------------------------------+
+| Calcul et approximation de la largeur arborescente   |
+| d'un graphe, paramétrée par la valeur de la solution |
+| Complexité : O(3^(3k).n.k)                           |
++------------------------------------------------------+
+
