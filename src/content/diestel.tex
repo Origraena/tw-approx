@@ -1,0 +1,129 @@
+% diestel.tex
+
+%%%%\definition{Ensembles séparables}
+%%%%\label{separables}
+%%%%	Etant donné un graphe $G = (V,E)$, deux sous-ensembles de sommets
+%%%%	$Y,Z \subseteq V$ sont {\em séparables} si $|Y| = |Z|$ et
+%%%%	$\exists S \subseteq V : |S| < |Y|$ tel que $G\setminus S$
+%%%%	ne contient aucun chemin entre $Y \setminus S$ et $Z \setminus S$.
+
+%%%%\definition{Ensemble k-lié}
+%%%%\label{kconnected}
+%%%%	Soit $G = (V,E)$ un graphe, un sous-ensemble de sommets
+%%%%	$X \subseteq V$ est {\em k-lié} si $|X| \geq k$ et 
+%%%%	$\forall Y,Z \subseteq V : |Y| = |Z| \leq k$, $Y$ et
+%%%%	$Z$ sont non-séparables.
+
+%%%%\theorem{Menger}
+%%%%\label{thmenger}
+%%%%	Soit $G = (V,E)$ un graphe.
+
+\definition{Ensemble k-lié}
+\label{kconnected}
+	Etant donné un graphe $G = (V,E)$, un sous-ensemble de sommets $X \subseteq V$
+	est {\em k-lié} si $|X| \geq k$ et $\forall Y,Z \subseteq V : |Y| = |Z| = n \leq k$,
+	il existe $n$ chemins disjoints entre $Y$ et $Z$.
+
+\definition{Ensemble k-lié externellement}
+\label{kextconnected}
+	Soit $G = (V,E)$ un graphe, un sous-ensemble de sommets $X \subseteq V$
+	est {\em k-lié externellement} si $X$ est k-lié et de plus, les chemins n'utilisent
+	aucune arête dans $E(X)$.
+
+\proposition{(Diestel)}
+\label{propdiestelh}
+	Soient $G = (V,E)$ un graphe, $h \geq k \in \N^*$.\\
+	Si $G$ ne contient aucun ensemble $k$-lié-externellement de taille $h$ alors,
+	$tw(G) < h + k - 1$.
+
+\preuve{propdiestelh}
+	Soit $U \subseteq V$ maximal tel qu'il existe une décomposition
+	arborescente ${\cal D} = (T,\{X_t : t \in T\})$ de largeur 
+	$width({\cal D}) < h + k - 1$,
+	telle que chaque composante $C$ connexe dans $G \setminus U$ a 
+	au plus $h$ voisins, notés $\Gamma(C)$, dans $U$ et qu'il
+	existe un n\oe ud $t \in T : \Gamma(C) \subseteq X_t$.
+	\\
+	{\em Hypothèse :} $U \neq V$.
+	Soit $C$ une composante connexe de $G \setminus U$.
+	On pose $X = \Gamma(C)$.
+	\\
+	On a $|X| \leq h$, on suppose $|X| < h$.
+	Pour chaque sommet $v \in C$, on peut ajouter un n\oe ud $t$ dans
+	$T$ tel que $X_t = X \cup \{v\}$, ainsi $U \cup \{x\}$ 
+	contredit la maximalité de $U$.
+	\\
+	Donc $|X| = h$, et d'après l'hypothèse de la proposition
+	$X$ n'est pas k-lié-externellement dans $G$.
+	Soit $Y,Z \subseteq X$ les ensembles séparables de $X$ tels que
+	$|Y| = |Z| = k$.
+	% menger
+	D'après le théorème de Menger \cite{thmenger}, il existe
+	$S \subseteq C \cup Y \cup Z$ le séparateur de $Y,Z$ de taille $|S| < k$.
+	On pose $X_Y = (X\setminus Z) \cup S$ et $X_Z = (X \setminus Y) \cup S$.
+	On a $|X| = h \leq h + k -1$, et puisque $|S| < |Y|$, $|X_Y|,|X_Z| < |X| = h$.
+	De plus, pour chaque composante $C' \subseteq C$ de $G \setminus (U\cup S)$,
+	$\Gamma(C') \subseteq X \cup S$, et plus précisemment soit dans $X_Y$, soit dans
+	$X_Z$ sinon il existe un chemin dans $X \setminus S$ reliant $Y$ et $Z$ à travers
+	$C'$.
+	Ainsi, $\Gamma(C') \subseteq X_Y$ ou bien $\Gamma(C') \subseteq X_Z$.
+	\\
+	Enfin, $S \cap C \neq \emptyset$ puisque $|S| < |Y|$.
+	On peut donc étendre $U$ en ajoutant un n\oe ud $t$ tel que
+	$X_t = X \cup S$ avec $|X_t| \leq h + k$ dans ${\cal D}$ contredisant l'hypothèse de maximalité
+	de $U$.
+	
+\proposition{(Diestel)}
+\label{propdiestel}
+	Soient $G = (V,E)$ un graphe et $k \in \N^*$.
+	\begin{itemize}
+		\item[(i)] Si $tw(G) < k$ alors $G$ ne contient aucun ensemble
+		$(k+1)$-lié de taille $n \geq 3k$.
+		\item[(ii)] Si $G$ ne contient aucun ensemble $(k+1)$-lié externellement
+		de taille $n \geq 3k$, alors $tw(G) < 4k$.
+	\end{itemize}
+
+\preuve{propdiestel}
+	Soient $G = (V,E)$ un graphe et $k \in \N^*$.
+	\begin{itemize}
+		\item[(i)] 
+		Soit $(T,\{X_t : t \in T\})$ une décomposition arborescente telle que $width(T) < k$.
+		\\
+		Soit $X \subseteq V$ un sous-ensemble des sommets de $G$ tel que $|X| \geq 3k$,
+		et on suppose que $X$ est $(k+1)$-lié.
+		Pour chaque arête $e = (t_1,t_2) \in E(T)$, soit $T'$ la composante de $T \setminus e$ telle que
+		$|X \cap \bigcup\limits_{t\in T'}X_t|$ soit maximum, et $T''$ l'autre, on oriente $(t_1,t_2)$ de 
+		de $T''$ vers $T'$.
+		\\
+		Soit un n\oe ud $t \in T$ tel que tous les arcs soient dirigés vers $t$.
+		Pour chaque n\oe ud $t_1,...,t_\ell$ voisin de $t$, soit $(A_i,B_i)$ une
+		séparation correspondante de $t_i$ telle que $X_t \subseteq B_i$.\\
+		{\em Hypothèse :} $|A_i \cap X| \geq k$.\\
+		On a alors par construction $|B_i \cap X| \geq k$, ainsi on peut trouver
+		$Y \subseteq A_i \cap X$ et $Z \subseteq B_i \cap X$ tels que $|Y| = |Z| = k$.
+		Or, $S = A_i \cap B_i$ sépare $A_i$ et $B_i$, donc également $Y$ et $Z$, de
+		plus $|S| < k$, contredisant le fait que $X$ soit $(k+1)$-lié (figure \ref{fig_aicapx}).
+		\\
+		\input{src/figures/aicapx.tex}
+		Ainsi, $|A_i \cap X| < k$.
+		\\
+		Soit $i \in [\ell]$ minimal tel que $|(A_1 \cup ... \cup A_i) \cap X| > k$.
+		On pose $A = \bigcup\limits_{j \in [i]} A_j$ et 
+		$B = \bigcup\limits_{j\in [i]} B_j$.
+		Puisque $i$ est minimal et $|A_i \cap X| < k$ on a $|A \cap X| < 2k$.
+		Et donc $|B\cap X| > |X| - 2k \geq k$.
+		Soient $Y \subseteq A \cap X, Z \subseteq B\cap X$ tels que
+		$|Y| = |Z| = k$.
+		Or par la proposition \ref{xsep} $X_t$ est un séparateur de $Y$ et $Z$
+		de taille $ < k$.
+		Ce qui est en contradiction avec l'hypothèse que $X$ est un ensemble
+		$(k+1)$-lié (figure \ref{fig_aicapx2}).
+		\\
+		\input{src/figures/aicapx2.tex}
+		
+		\item[(ii)]
+		En appliquant la proposition \ref{propdiestelh} pour $h = 3k$, le résultat est immédiat.
+
+
+	\end{itemize}
+

@@ -1,0 +1,145 @@
+% tw_def.tex
+
+\definition{Décomposition arborescente}
+\label{treedec}
+	Une décomposition arborescente d'un graphe $G = (V,E)$ est une paire
+	$(T,\{X_t : t\in T\}))$
+	, avec $T$ un arbre, et $\forall t \in T : V_t \subseteq V)$, respectant
+	les trois propriétés suivantes :
+	\begin{itemize}
+		\item {\em couverture des sommets :}
+		$\forall x \in V, \exists t \in T : x \in X_t$            
+		\item {\em couverture des arêtes :}
+		$\forall (x,y) \in E, \exists t \in T : x,y \in X_t$      
+		\item {\em consistance :}
+		$\forall x \in V, (\exists t_1,t_2 \in T : x\in X_{t_1} \cap X_{t_2} \rightarrow
+	     \forall t\ sur\ le\ chemin\ t_1t_2 \in T, x\in X_t)$
+	\end{itemize}
+
+\definition{Largeur d'une décomposition arborescente}
+\label{width}
+	La largeur d'une décomposition arborescente $(T,\{X_t : t \in T\})$ d'un graphe
+	$G = (V,E)$ est définie par : $width(T) = \max\limits_{t \in T}|X_t| - 1$
+(voir figure \ref{fig_extreedec}).
+
+\input{src/figures/extreedec.tex}
+
+\definition{Largeur arborescente}
+\label{treewidth}
+	La largeur arborescente d'un graphe $G = (V,E)$ est :
+	$tw(G) = \min\limits_{\forall T \in \cal{T}_G} width(T)$
+	, où $\cal{T}_G$ représente l'ensemble des décompositions
+	arborescentes de $G$ .
+
+\observation{N\oe uds doublons}{
+	Quelle que soit la décomposition $(T,\{X_t : t \in T\})$, si il existe
+	$t_i,t_j \in T : X_{t_i} \subseteq X_{t_j}$ alors la décomposition
+	arborescente $(T' = T \setminus {t_i}, X_t : t \in T'\})$ est valide
+	et a la même largeur que $T$.\\
+	Ainsi, par la suite on ne tiendra compte que de décompositions arborescentes
+	pour lesquelles aucun n\oe ud n'est contenu dans un autre.
+}
+
+\definition{N\oe ud interne}
+\label{intnode}
+	Soit $(T,\{X_t : t\in T\})$ une décomposition arborescente.
+	Tout n\oe ud $t$ est un {\em n\oe ud interne} de $T$ si 
+	$\exists t_1 \neq t_2 \in T : (t,t_1),(t,t_2) \in E(T) \wedge X_{t_1},X_{t_2} \subsetneq X_t$.
+
+\definition{Séparation}
+\label{defsep}
+	Une {\em séparation} d'un graphe $G = (V,E)$ est une paire de deux sous-ensembles de sommets
+	$(A,B)$ telle que :
+	\begin{itemize}
+		\item $A,B \subseteq V$
+		\item $A \cup B = V$
+		\item il n'existe aucun chemin dans $G \setminus (A\cap B)$ reliant $A \setminus (A \cap B)$
+		et $B \setminus (A \cap B)$
+	\end{itemize}
+
+\proposition{}
+\label{xsep}
+	Soient $G = (V,E)$ un graphe et $(T,\{X_t : t\in T\})$ une décomposition arborescente.\\
+	Tout n\oe ud interne $X_t$ est un {\em séparateur} de $G$.
+
+\preuve{xsep}
+	Soient $G = (V,E)$ un graphe et $(T,\{X_t : t\in T\})$ une décomposition arborescente.
+\\
+	Soit $t$ un n\oe ud interne de $T$.
+\\
+	Puisque $T$ est un arbre, $t$ est un séparateur de $T$, on note
+	$T_1,\dots,T_\ell$ les composantes connexes de $T\setminus\{t\}$ ;
+	% On observe que $\forall i \in [\ell] T_i$ est un sous-arbre de $T$.
+	$V_i = \{x \in V : \exists t' \in T_i, x\in X_{t'}\}$ l'ensemble
+	des sommets de $G$ présents dans les n\oe uds du sous-arbre $T_i$ ;
+	et $G_i = G[V_i\setminus X_t]$
+	(voir figure \ref{fig_xsep}).
+\\
+	Par la couverture des sommets, $\forall x \in V \setminus \{X_t\}$,
+	$\exists i \in [\ell] : x \in V(G_i)$.
+\\
+	{\em Hypothèse :} $\exists i \neq j \in [\ell], \exists x \in G_i, y \in G_j : (x,y) \in E$.
+\\
+	Par la propriété de couverture des arêtes, il existe $t' \in T$ tel que
+	$\{x,y\} \subseteq X_t'$.
+\\
+	On note $T_x$ (resp $T_y$) le sous-arbre associé à $x$ (resp $y$).
+\\
+	$t' \in T_x \cap T_y$, donc $T_x \cup T_y$ est connexe.
+	De plus, $T_x \cap T_i \neq \emptyset$ et $T_y \cap T_j \neq \emptyset$ puisque
+	$x \in V(G_i)$ et $y \in V(G_j)$.
+	Or $t$ est un séparateur de $T$ et il existe un chemin de $T_i$ vers $T_j$ 
+	passant par $T_x \cap T_y$, donc $t \in T_x \cap T_y$.
+\\
+	On en conclut que $x,y \in X_t$, ce qui est en contradiction avec l'hypothèse.
+
+	\input{src/figures/xseparateur.tex}
+
+	%	TODO
+%\observation{Séparation associée}
+%	On remarque que les ensembles séparés sont ceux des sous-arbres de T \ t
+
+\proposition{}
+\label{isep}
+	Soient $G = (V,E)$ un graphe et $(T,\{X_t : t\in T\})$ une décomposition arborescente.\\
+	$\forall (t_1,t_2) \in E(T) : X_{t_1} \cap X_{t_2}$ est un {\em séparateur} de $G$.
+
+\preuve{isep}
+	Soient $G = (V,E)$ un graphe et $(T,\{X_t : t\in T\})$ une décomposition arborescente.
+	Soient $t_1$ et $t_2$ adjacents dans l'arbre.
+	\\
+	On construit une décomposition $T'$ de $G$ telle que $V(T') = V(T) \cup \{t'\}$ avec
+	$X_{t'} = X_{t_1} \cap X_{t_2}$.
+	et $E(T') = E(T) \setminus (t_1,t_2) \cup \{(t_1,t'),(t',t_2)\}$
+	(voir figure \ref{fig_isep}).
+	\\
+	{\em Intuitivement,
+	on ajoute un n\oe ud $t'$ dans la décomposition contenant les sommets de $G$
+	appartenant à la fois à $t_1$ et à $t_2$,
+	puis on coupe l'arête entre $t_1$ et $t_2$ afin d'insérer $t'$ entre ces deux
+	n\oe uds dans l'arbre. }
+	\\
+	La nouvelle décomposition $T'$ respecte
+	toujours la couverture des sommets et des arêtes (puisqu'on n'a
+	modifié aucun ensemble de sommets $X_t$ correspondant à un n\oe ud de l'arbre).
+	Concernant la consistance, pour tout sommet $x \in V$ dont le sous-arbre d'occurences
+	dans $T$ passe par l'arête $(t_1,t_2)$, on a $x \in X_{t_1}$ et $x \in X_{t_2}$,
+	donc $x \in X_{t_1} \cap X_{t_2}$, et alors dans $T'$, $x \in X_{t'}$.
+	\\
+	$T'$ est donc une décomposition arborescente valide.
+	De plus, il existe $t_1 \neq t_2 \in T : (t',t_1),(t',t_2) \in E(T)$, donc $t'$
+	est un n\oe ud interne de l'arbre.
+	Enfin d'après la proposition \ref{xsep}, $t'$ étant un sommet interne
+	de $T'$, $X_{t'}$ est un séparateur de $G$.
+
+\definition{Séparation correspondante}
+	Soient $G = (V,E)$ un graphe, et $(T,\{X_t : t \in T\})$ une décomposition arborescente
+	de $G$. Pour chaque arête $(t_i,t_j) \in E(T)$, on note $T_i$ (resp $T_j$) le sous-arbre
+	associé à la composante de $T \setminus (t_i,t_j)$ contenant $t_i$ (resp $t_j$).
+	Soient les sous-ensembles de sommets $X_i = \bigcup\limits_{t\in T_i}X_t$ et
+	$X_j = \bigcup\limits_{t\in T_j}X_t$ associés aux composantes du graphe séparées
+	par $X_{t_i} \cap X_{t_j}$.
+	
+	Toute séparation $(A,B)$ de $G$ avec les ensembles de sommets $A = X_i$ et
+	$B = X_j$ est dite {\em séparation correspondante de } $(t_i,t_j)$.
+

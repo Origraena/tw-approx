@@ -1,0 +1,43 @@
+% meta/setup.tex
+
+%\geometry{left=1.5cm,right=1cm,marginparwidth=0.5cm,marginparsep=2mm,top=1cm,bottom=1cm}
+
+\hypersetup{
+	urlcolor=blue,
+	linkcolor=black,
+	citecolor=black,
+	colorlinks=true
+}
+
+
+%% code integration
+
+\definecolor{lst_bg}{rgb}{0.95,0.95,0.95}       % background 
+\definecolor{lst_kw}{rgb}{1,0,0}                % keywords
+\definecolor{lst_cmt}{rgb}{0,0,1}               % comments
+\definecolor{lst_str}{rgb}{0.627,0.126,0.941}   % strings
+
+\lstset{
+	backgroundcolor=\color{lst_bg}
+	tabsize=4,
+	rulecolor=,
+	language=Java,
+		basicstyle=\scriptsize,
+		numbers=left,
+		numberstyle=\tiny,
+        aboveskip={1.5\baselineskip},
+        columns=fixed,
+        showstringspaces=false,
+        extendedchars=true,
+        breaklines=true,
+        prebreak = \raisebox{0ex}[0ex][0ex]{\ensuremath{\hookleftarrow}},
+        frame=single,
+        showtabs=false,
+        showspaces=false,
+        showstringspaces=false,
+        identifierstyle=\ttfamily,
+        keywordstyle=\color{lst_kw},
+        commentstyle=\color{lst_cmt},
+        stringstyle=\color{lst_str},
+}
+

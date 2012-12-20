@@ -1,0 +1,57 @@
+% tw_calcul.tex
+
+\subsection{Algorithme}
+\label{algo}
+\begin{center}
+\begin{algorithm}[H]
+\caption{Approximation largeur arborescente}\label{algo_tw}
+\algsetup{indent=2em,linenodelimiter= }
+\begin{algorithmic}[1]
+\REQUIRE{Graphe $G = (V,E)$, $k \in \N$}
+\ENSURE{$D$ une décomposition arborescente telle que $width(D) \leq 4k$,\\
+	ou $ECHEC$ (et $tw(G) > k$)}
+	\STATE $U \leftarrow X : X \subseteq V \wedge |X| = 3k$
+	\STATE $D = (T,\{X_t : \forall t \in T\}) \leftarrow (t_0,\{X\})$
+	\WHILE{$U \neq V$}
+		\STATE Soit $C$ une composante connexe de $G \setminus U$
+		\STATE Soit $X \leftarrow \Gamma(C)$ le voisinage de $C$
+		\STATE Soit $t \in T : X \subseteq X_t$ le n\oe ud de $T$ contenant $X$
+		\IF{$|X| < 3k$}
+			\STATE $X' \leftarrow X \cup \{x\} : x \in C \cap \Gamma(X_t)$
+			\STATE $U \leftarrow U \cup \{x\}$
+		\ELSE
+			\IF{$X$ est $(k+1)$-lié}
+				\RETURN $ECHEC (tw(G) > k)$
+			\ELSE
+				\STATE Soient $Y,Z \subseteq V$ les ensembles séparables
+				de $X$
+				\STATE Soit $S \subseteq C \cup Y \cup Z$ le séparateur de $Y$ et $Z$
+				\STATE $X' \leftarrow X \cup S$
+				\STATE $U \leftarrow U \cup S$
+			\ENDIF
+		\ENDIF
+		\STATE $D \leftarrow D \cup \{X'\}$
+		\STATE $E(T) \leftarrow E(T) \cup (t,t')$
+	\ENDWHILE
+	\RETURN $D$
+\end{algorithmic}
+\end{algorithm}
+\end{center}
+
+\subsection{Analyse}
+\label{analyse}
+La décomposition arborescente est produite selon la construction de la preuve \ref{propdiestel}.
+Si le graphe $G$ admet une largeur arborescente $tw(G) \leq k$,
+alors cet algorithme renvoie une décomposition arborescente $D$ de largeur $width(D) \leq 4k$.
+
+La boucle est itérée au pire $n$ fois (avec $n$ le nombre de sommets de $G$), et le calcul des
+composantes et de leur voisinage est en $O(n+m) = O(n^2)$.
+De plus, la construction assure que tout au long de l'algorithme, chaque composante de $G \setminus U$
+a au plus $3k$ voisins dans $U$, et qu'ils sont tous contenus dans un seul n\oe ud de la décomposition.
+
+L'étape de calcul du séparateur est la plus coûteuse, il faut pour 
+chaque sous-ensemble $Y,Z \in X : |Y| = |Z| \leq k + 1$ ($3^{|X| = 3k}$) tester
+s'ils sont séparables via un algorithme de flot (polynomial en $k$).
+
+Ainsi la complexité en temps de cette approximation est en $O(3^{3k}.n.k)$.
+
