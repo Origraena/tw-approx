@@ -44,8 +44,8 @@ La décomposition arborescente est produite selon la construction de la preuve \
 Si le graphe $G$ admet une largeur arborescente $tw(G) \leq k$,
 alors cet algorithme renvoie une décomposition arborescente $D$ de largeur $width(D) \leq 4k$.
 
-La boucle est itérée au pire $n$ fois (avec $n$ le nombre de sommets de $G$), et le calcul des
-composantes et de leur voisinage est en $O(n+m) = O(n^2)$.
+La boucle est itérée au pire $n$ fois (avec $n$ le nombre de sommets de $G$).% et le calcul des
+%composantes et de leur voisinage est en $O(n+m) = O(n^2)$.
 De plus, la construction assure que tout au long de l'algorithme, chaque composante de $G \setminus U$
 a au plus $3k$ voisins dans $U$, et qu'ils sont tous contenus dans un seul n\oe ud de la décomposition.
 

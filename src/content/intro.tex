@@ -2,9 +2,32 @@
 
 %Bien qu'il ait été démontré que décider si 
 
+Les décompositions arborescentes sont très utiles, permettant
+de modifier la structure d'un graphe pour permettre de résoudre
+des problèmes difficiles dans le cas général, en ramenant la topologie
+du graphe à un {\em arbre}.
+
+De plus, de nombreux problèmes appartenant à la classe NP-difficile
+peuvent atteindre des complexités polynomiales pour une valeur de
+largeur arborescente fixée, par exemple {\em Ensemble-Indépendant},
+et {\em Cycle Hamiltonien}.
+
+Cependant, il a été démontré par Arnborg, Corneil et Proskurowski que le
+problème de décider si la largeur arborescente d'un graphe est inférieure
+ou égale à une valeur donnée est NP-difficile \cite{arnborg}.
+Bodlaender quant à lui, prouva l'existence d'un 
+algorithme de complexité $O(2^{k^3}.n)$ permettant de répondre
+à cette question \cite{bodlaender}.
+
+Puisque la largeur arborescente est avant tout utilisée comme
+paramètre d'autres problèmes, Diestel \cite{diestel} proposa une approximation
+avec garantie permettant de construire une décomposition de largeur
+bornée.
+
 Tout d'abord la largeur arborescente est définie formellement, et quelques propriétés
 sont établies. S'en suit deux propositions fortes permettant de construire une
 décomposition arborescente $4$-approchée en temps polynomial lorsque paramétrée par
 la valeur de la solution.
 Enfin un algorithme basé sur cette construction est donné, et sa complexité analysée.
+
 
