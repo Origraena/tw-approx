@@ -2,6 +2,7 @@
 
 \begin{figure}[H]
 \begin{center}
+
 \begin{tikzpicture}[]
 	\node [vertex,fill=green!50] (v0) {};
 	\node [vertex] (v1) [below of=v0] {};
@@ -61,8 +62,74 @@
 	\node [label] (ls3b) at (6.5,-1.6) {{\Large \color{blue} $B_3$}};
 
 \end{tikzpicture}
+
+\begin{tikzpicture}[]
+	\node [vertex,fill=blue!50] (v0) {};
+	\node [vertex] (v1) [below of=v0] {};
+	\node [vertex,fill=blue!50,draw=green] (v2) [right of=v0] {};
+	\node [vertex,fill=blue!50,draw=green] (v3) [right of=v1] {};
+	\node [vertex,fill=blue!50,draw=green] (v4) [right of=v3] {};
+	\node [vertex,fill=yellow!50] (v5) [below of=v3] {};
+	\node [vertex] (v6) [below of=v4] {};
+	\node [vertex] (v7) [below right of=v5] {};
+	\node [vertex,fill=blue!50] (v8) [right of=v4] {};
+	\node [vertex] (v9) [above right of=v4] {};
+	\node [vertex] (v10) [above left of=v9] {};
+	\node [label] (lv0) at (1,0.5) {{\Large \color{green!66!black} $X$}};
+
+	\draw [edge] (v0) -- (v1);
+	\draw [edge] (v0) -- (v2);
+	\draw [edge] (v1) -- (v3);
+	\draw [edge,draw=green] (v2) -- (v3);
+	\draw [edge,draw=green] (v2) -- (v4);
+	\draw [edge] (v2) -- (v9);
+	\draw [edge] (v2) -- (v10);
+	\draw [edge,draw=green] (v3) -- (v4);
+	\draw [edge] (v3) -- (v5);
+	\draw [edge] (v4) -- (v6);
+	\draw [edge] (v4) -- (v8);
+	\draw [edge] (v4) -- (v9);
+	\draw [edge] (v5) -- (v6);
+	\draw [edge] (v5) -- (v7);
+	\draw [edge] (v6) -- (v7);
+	\draw [edge] (v8) -- (v9);
+	\draw [edge] (v9) -- (v10);
+
+	\node [treedec] (t0) at (1,-1) {};
+	\node [treedec,fill=green!50] (t1) at (2.7,-1.3) {};
+	\node [treedec] (t2) at (3,-3) {};
+	\node [treedec] (t3) at (3.2,-4.5) {};
+	\node [treedec] (t4) at (4,-1) {};
+	\node [treedec] (t5) at (5.25,-1.5) {};
+	\node [treedec] (t6) at (4,0.25) {};
+	\node [label] (lt0) at (0.5,-0.5) {{\Large \color{red} $T$}};
+
+	\draw [treeedge,->,ultra thick] (t0) -- (t1);
+	\draw [treeedge,<-,ultra thick] (t1) -- (t2);
+	\draw [treeedge,<-,ultra thick] (t1) -- (t4);
+	\draw [treeedge,<-,ultra thick] (t2) -- (t3);
+	\draw [treeedge,<-,ultra thick] (t4) -- (t5);
+	\draw [treeedge,<-,ultra thick] (t4) -- (t6);
+% TODO séparations Ai, Bi, A, B
+	\draw [separator] (2.1,1) -- (2.1,-2) -- (0.3,-3.7);
+	\node [label] (ls1a) at (0.7,-2.7) {{\Large \color{blue} $A_1$}};
+	\node [label] (ls1b) at (1.3,-3.3) {{\Large \color{blue} $B_1$}};
+	\draw [separator] (1.7,0.4) -- (5.4,-3.3);
+	\node [label] (ls2a) at (5,-2.4) {{\Large \color{blue} $A_2$}};
+	\node [label] (ls2b) at (4.5,-3) {{\Large \color{blue} $B_2$}};
+	\draw [separator] (-0.5,-1.9) -- (6.8,-1.9);
+	\node [label] (ls3a) at (6.5,-2.2) {{\Large \color{blue} $A_3$}};
+	\node [label] (ls3b) at (6.5,-1.6) {{\Large \color{blue} $B_3$}};
+
+	\node [label] (ltA) at (0,0.5) {{\Large \color{blue!66!black} $A$}};
+	\node [label] (ltB) at (1.5,-4.5) {{\Large \color{yellow!50!black} $B$}};
+
+
+\end{tikzpicture}
+
 \end{center}
-\caption{illustration preuve \ref{propdiestel} : hypothèse $A_i \cap X < k$}
+\caption{illustration preuve \ref{propdiestel} : hypothèse $A_i \cap X < k$
+chaque sommet représente un sous-graphe connexe de taille $\frac{k}{4}$}
 \label{fig_aicapx2}
 \end{figure}
 
