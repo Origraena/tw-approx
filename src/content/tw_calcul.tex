@@ -1,5 +1,9 @@
 % tw_calcul.tex
 
+La preuve de la proposition \ref{propdiestelh} de Diestel a l'avantage d'être
+constructive. Ainsi on peut en déduire un algorithme permettant de trouver
+une approximation de décomposition arborescente.
+
 \subsection{Algorithme}
 \label{algo}
 \begin{center}
@@ -40,15 +44,19 @@
 
 \subsection{Analyse}
 \label{analyse}
-La décomposition arborescente est produite selon la construction de la preuve \ref{propdiestel}.
+La décomposition arborescente est produite selon la construction
+de la preuve \ref{propdiestelh} (figure \ref{fig_twbuild}).
 Si le graphe $G$ admet une largeur arborescente $tw(G) \leq k$,
 alors cet algorithme renvoie une décomposition arborescente $D$ de largeur $width(D) \leq 4k$.
-
-La boucle est itérée au pire $n$ fois (avec $n$ le nombre de sommets de $G$).% et le calcul des
-%composantes et de leur voisinage est en $O(n+m) = O(n^2)$.
+C'est à dire que l'algorithme garantit (via la proposition \ref{propdiestel}), que
+si la construction de la décomposition échoue, alors la largeur arborescente du graphe est
+strictement supérieure à $k$.
 De plus, la construction assure que tout au long de l'algorithme, chaque composante de $G \setminus U$
 a au plus $3k$ voisins dans $U$, et qu'ils sont tous contenus dans un seul n\oe ud de la décomposition.
 
+En ce qui concerne le temps d'exécution ;
+La boucle est itérée au pire $n$ fois (avec $n$ le nombre de sommets de $G$).% et le calcul des
+%composantes et de leur voisinage est en $O(n+m) = O(n^2)$.
 L'étape de calcul du séparateur est la plus coûteuse, il faut pour 
 chaque sous-ensemble $Y,Z \in X : |Y| = |Z| \leq k + 1$ ($3^{|X| = 3k}$) tester
 s'ils sont séparables via un algorithme de flot (polynomial en $k$).

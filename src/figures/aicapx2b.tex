@@ -5,16 +5,15 @@
 \begin{tikzpicture}[]
 	\node [vertex,fill=blue!50] (v0) {};
 	\node [vertex] (v1) [below of=v0] {};
-	\node [vertex,fill=blue!50,draw=green] (v2) [right of=v0] {};
-	\node [vertex,fill=blue!50,draw=green] (v3) [right of=v1] {};
-	\node [vertex,fill=blue!50,draw=green] (v4) [right of=v3] {};
+	\node [vertex,fill=yellow!50,draw=green] (v2) [right of=v0] {};
+	\node [vertex,fill=yellow!50,draw=green] (v3) [right of=v1] {};
+	\node [vertex,fill=yellow!50,draw=green] (v4) [right of=v3] {};
 	\node [vertex,fill=yellow!50] (v5) [below of=v3] {};
-	\node [vertex] (v6) [below of=v4] {};
+	\node [vertex,fill=yellow!50] (v6) [below of=v4] {};
 	\node [vertex] (v7) [below right of=v5] {};
 	\node [vertex,fill=blue!50] (v8) [right of=v4] {};
-	\node [vertex] (v9) [above right of=v4] {};
-	\node [vertex] (v10) [above left of=v9] {};
-	\node [label] (lv0) at (1,0.5) {{\Large \color{green!66!black} $X$}};
+	\node [vertex,fill=blue!50] (v9) [above right of=v4] {};
+	\node [vertex,fill=blue!50] (v10) [above left of=v9] {};
 
 	\draw [edge] (v0) -- (v1);
 	\draw [edge] (v0) -- (v2);
@@ -49,26 +48,15 @@
 	\draw [treeedge,<-,ultra thick] (t2) -- (t3);
 	\draw [treeedge,<-,ultra thick] (t4) -- (t5);
 	\draw [treeedge,<-,ultra thick] (t4) -- (t6);
-% TODO séparations Ai, Bi, A, B
-	\draw [separator] (2.1,1) -- (2.1,-2) -- (0.3,-3.7);
-	\node [label] (ls1a) at (0.7,-2.7) {{\Large \color{blue} $A_1$}};
-	\node [label] (ls1b) at (1.3,-3.3) {{\Large \color{blue} $B_1$}};
-	\draw [separator] (1.7,0.4) -- (5.4,-3.3);
-	\node [label] (ls2a) at (5,-2.4) {{\Large \color{blue} $A_2$}};
-	\node [label] (ls2b) at (4.5,-3) {{\Large \color{blue} $B_2$}};
-	\draw [separator] (-0.5,-1.9) -- (6.8,-1.9);
-	\node [label] (ls3a) at (6.5,-2.2) {{\Large \color{blue} $A_3$}};
-	\node [label] (ls3b) at (6.5,-1.6) {{\Large \color{blue} $B_3$}};
 
-	\node [label] (ltA) at (0,0.5) {{\Large \color{blue!66!black} $A$}};
-	\node [label] (ltB) at (1.5,-4.5) {{\Large \color{yellow!50!black} $B$}};
+	\node [label] (ltA) at (0,0.5) {{\Large \color{blue!66!black} $A\cap X$}};
+	\node [label] (ltB) at (1.5,-4.5) {{\Large \color{yellow!50!black} $B \cap X$}};
 
 
 \end{tikzpicture}
 
 \end{center}
-\caption{illustration preuve \ref{propdiestel} : hypothèse $A_i
-	\cap X < k$}
+\caption{preuve \ref{propdiestel} : construction de $A$}
 \label{fig_aicapx2b}
 \end{figure}
 

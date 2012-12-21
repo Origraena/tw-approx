@@ -11,11 +11,11 @@
 	\node [vertex,fill=green!50] (v3) [right of=v1] {};
 	\node [vertex,fill=green!50] (v4) [right of=v3] {};
 	\node [vertex,fill=green!50] (v5) [below of=v3] {};
-	\node [vertex] (v6) [below of=v4] {};
+	\node [vertex,fill=green!50] (v6) [below of=v4] {};
 	\node [vertex] (v7) [below right of=v5] {};
 	\node [vertex,fill=green!50] (v8) [right of=v4] {};
-	\node [vertex] (v9) [above right of=v4] {};
-	\node [vertex] (v10) [above left of=v9] {};
+	\node [vertex,fill=green!50] (v9) [above right of=v4] {};
+	\node [vertex,fill=green!50] (v10) [above left of=v9] {};
 	\node [label] (lv0) at (1,0.5) {{\Large \color{green!66!black} $X$}};
 
 	\draw [edge] (v0) -- (v1);
@@ -51,7 +51,6 @@
 	\draw [treeedge,<-,ultra thick] (t2) -- (t3);
 	\draw [treeedge,<-,ultra thick] (t4) -- (t5);
 	\draw [treeedge,<-,ultra thick] (t4) -- (t6);
-% TODO séparations Ai, Bi, A, B
 	\draw [separator] (2.1,1) -- (2.1,-2) -- (0.3,-3.7);
 	\node [label] (ls1a) at (0.7,-2.7) {{\Large \color{blue} $A_1$}};
 	\node [label] (ls1b) at (1.3,-3.3) {{\Large \color{blue} $B_1$}};
@@ -64,7 +63,7 @@
 
 \end{tikzpicture}
 \end{center}
-\caption{illustration preuve \ref{propdiestel} : hypothèse $A_i \cap X < k$}
+\caption{preuve \ref{propdiestel} : construction $A_i \cap X < k$}
 \label{fig_aicapx2a}
 \end{figure}
 
